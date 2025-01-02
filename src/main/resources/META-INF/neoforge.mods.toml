@@ -1,0 +1,33 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "capture_xp"
+version = "1.6-neoforge-1.0.0"
+displayName = "Cobblemon Capture XP"
+authors = "timinc aka Timothy Metcalfe"
+description = '''
+Grants EXP for your team when you capture a wild Pokemon
+'''
+
+[[dependencies.capture_xp]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.capture_xp]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21.1.66,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.capture_xp]]
+modId = "cobblemon"
+mandatory = true
+versionRange = "[1.6.0,1.7.0)"
+ordering = "AFTER"
+side = "BOTH"
