@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent
 import com.cobblemon.mod.common.api.pokemon.experience.SidemodExperienceSource
 import com.cobblemon.mod.common.api.tags.CobblemonItemTags
-import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.pokemon.OriginalTrainerType
 import com.cobblemon.mod.common.pokemon.evolution.requirements.LevelRequirement
 import com.cobblemon.mod.common.util.isInBattle
@@ -22,11 +21,14 @@ import kotlin.math.roundToInt
 object CaptureXP {
     const val MOD_ID = "capture_xp"
     private var captureXPConfig: CaptureXPConfig = ConfigBuilder.load(CaptureXPConfig::class.java, MOD_ID)
+    var eventsListening = false
 
     @EventBusSubscriber()
     object Registration {
         @SubscribeEvent
         fun onInit(e: ServerStartedEvent) {
+            if (eventsListening) return
+            eventsListening = true
             CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
                 if (event.player.isInBattle()) handleCaptureInBattle(event) else handleCaptureOutOfBattle(event)
             }
