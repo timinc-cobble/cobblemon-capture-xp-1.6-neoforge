@@ -1,4 +1,4 @@
-rootProject.name = "cobblemon-capture-xp"
+rootProject.name = "cobblemon-capturexp"
 
 pluginManagement {
     repositories {
