@@ -8,10 +8,7 @@ import com.cobblemon.mod.common.api.tags.CobblemonItemTags
 import com.cobblemon.mod.common.pokemon.OriginalTrainerType
 import com.cobblemon.mod.common.pokemon.evolution.requirements.LevelRequirement
 import com.cobblemon.mod.common.util.isInBattle
-import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
-import net.neoforged.neoforge.event.server.ServerStartedEvent
 import us.timinc.mc.cobblemon.capturexp.config.CaptureXPConfig
 import us.timinc.mc.cobblemon.capturexp.config.ConfigBuilder
 import kotlin.math.pow
@@ -23,17 +20,10 @@ object CaptureXP {
 
     @Suppress("MemberVisibilityCanBePrivate")
     var config: CaptureXPConfig = ConfigBuilder.load(CaptureXPConfig::class.java, MOD_ID)
-    var eventsListening = false
 
-    @EventBusSubscriber()
-    object Registration {
-        @SubscribeEvent
-        fun onInit(e: ServerStartedEvent) {
-            if (eventsListening) return
-            eventsListening = true
-            CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
-                if (event.player.isInBattle()) handleCaptureInBattle(event) else handleCaptureOutOfBattle(event)
-            }
+    init {
+        CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
+            if (event.player.isInBattle()) handleCaptureInBattle(event) else handleCaptureOutOfBattle(event)
         }
     }
 
