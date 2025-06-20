@@ -4,7 +4,7 @@ license = "MIT"
 
 [[mods]]
 modId = "capture_xp"
-version = "1.6-neoforge-1.1.0"
+version = "1.6-neoforge-1.1.1"
 displayName = "Cobblemon Capture XP"
 authors = "timinc aka Timothy Metcalfe"
 description = '''
