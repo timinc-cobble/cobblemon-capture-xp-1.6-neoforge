@@ -20,7 +20,6 @@ object CaptureXP {
 
     @Suppress("MemberVisibilityCanBePrivate")
     var config: CaptureXPConfig = ConfigBuilder.load(CaptureXPConfig::class.java, MOD_ID)
-    var eventsListening = false
 
     init {
         CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
